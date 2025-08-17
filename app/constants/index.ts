@@ -1,0 +1,1 @@
+export const RANDOM_IMAGE_HEIGHTS = [180, 330, 230, 150];

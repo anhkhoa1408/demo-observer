@@ -1,13 +1,15 @@
+import { Link } from "react-router";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
+  return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <div className="flex flex-col gap-4 [&_a]:text-xl [&_a]:hover:text-blue-500">
+      <Link to="/lazy-load">Lazy Load</Link>
+      <Link to="/infinite-scroll">Infinite Scroll</Link>
+    </div>
+  );
 }
