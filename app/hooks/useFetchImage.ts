@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export interface DummyImage {
   id: string;
@@ -19,7 +19,7 @@ export const useFetchImage = ({ page = 1, limit = 100 }): DummyImage[] => {
         const data = await response.json();
         setImages(data);
       } catch (error) {
-        console.error("Error fetching images:", error);
+        console.error('Error fetching images:', error);
       }
     }
 

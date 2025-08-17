@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { RANDOM_IMAGE_HEIGHTS } from "~/constants";
-import { useFetchImage } from "~/hooks/useFetchImage";
+import { useEffect, useRef, useState } from 'react';
+import { RANDOM_IMAGE_HEIGHTS } from '~/constants';
+import { useFetchImage } from '~/hooks/useFetchImage';
 
 const LazyLoadingWrapper = () => {
   const data = useFetchImage({ page: 1, limit: 200 });
@@ -15,7 +15,7 @@ const LazyLoadingWrapper = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const img = entry.target as HTMLImageElement;
-            img.src = img.dataset.src || "";
+            img.src = img.dataset.src || '';
             observerRef.current?.unobserve(img);
           }
         });
@@ -32,7 +32,7 @@ const LazyLoadingWrapper = () => {
 
   useEffect(() => {
     if (rootContainerRef) {
-      const images = rootContainerRef.querySelectorAll(".lazy-load-item");
+      const images = rootContainerRef.querySelectorAll('.lazy-load-item');
       images.forEach((img) => {
         observerRef.current?.observe(img);
       });
@@ -51,7 +51,9 @@ const LazyLoadingWrapper = () => {
         <img
           key={item.id}
           className="lazy-load-item w-full object-cover block break-inside-avoid mb-4"
-          style={{ height: RANDOM_IMAGE_HEIGHTS[index % RANDOM_IMAGE_HEIGHTS.length] }}
+          style={{
+            height: RANDOM_IMAGE_HEIGHTS[index % RANDOM_IMAGE_HEIGHTS.length],
+          }}
           data-src={item.download_url}
         />
       ))}

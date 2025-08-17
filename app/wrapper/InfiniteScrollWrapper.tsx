@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { RANDOM_IMAGE_HEIGHTS } from "~/constants";
-import type { DummyImage } from "~/hooks/useFetchImage";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { RANDOM_IMAGE_HEIGHTS } from '~/constants';
+import type { DummyImage } from '~/hooks/useFetchImage';
 
 interface InfiniteScrollWrapperProps {
-  mode: "reverse" | "normal";
+  mode: 'reverse' | 'normal';
 }
 
 const InfiniteScrollWrapper = ({ mode }: InfiniteScrollWrapperProps) => {
@@ -19,7 +19,7 @@ const InfiniteScrollWrapper = ({ mode }: InfiniteScrollWrapperProps) => {
   const prevRootContainerRefHeight = useRef(0);
   const isFetching = useRef(false);
 
-  const isReverseMode = useMemo(() => mode === "reverse", [mode]);
+  const isReverseMode = useMemo(() => mode === 'reverse', [mode]);
 
   const fetchImages = useCallback(
     async (page: number) => {
@@ -32,7 +32,9 @@ const InfiniteScrollWrapper = ({ mode }: InfiniteScrollWrapperProps) => {
         });
         const data = await response.json();
         prevRootContainerRefHeight.current = rootContainerRef?.current?.scrollHeight || 0;
-        setData((prevData) => (mode === "normal" ? [...prevData, ...data] : [...data, ...prevData]));
+        setData((prevData) =>
+          mode === 'normal' ? [...prevData, ...data] : [...data, ...prevData],
+        );
       } catch (error) {
         setPage((prevPage) => prevPage - 1);
       } finally {
@@ -73,7 +75,7 @@ const InfiniteScrollWrapper = ({ mode }: InfiniteScrollWrapperProps) => {
         },
         {
           threshold: 0.1,
-          rootMargin: isReverseMode ? "50% 0px 0px 0px" : "0px",
+          rootMargin: isReverseMode ? '50% 0px 0px 0px' : '0px',
         },
       );
     }
@@ -95,7 +97,7 @@ const InfiniteScrollWrapper = ({ mode }: InfiniteScrollWrapperProps) => {
           key={item?.id || index}
           className="break-inside-avoid object-cover w-full mb-4 block"
           style={{
-            height: "200px",
+            height: '200px',
           }}
           src={item?.download_url}
         />
